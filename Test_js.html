@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        console.log('ES1---------------------------------------------------------------------')
+        {//ESERCIZIO 1//creo funzione per andare a ciclare su oggetti all'interno dell'array, 
+            //creo if all'interno della funzione per pushare solo le persone che hanno un' età superiore ai 30 in un nuovo array.
+
+            function array_obj(array) {
+                let olderpersons = []
+                for (let x = 0; x < array.length; x++) {
+                    if (array[x]['age'] > 30) {
+                        olderpersons.push(array[x])
+                    }
+                } return olderpersons
+            }
+
+            let persons = [
+                {
+                    name: 'Marco',
+                    surname: 'Boera',
+                    age: 20
+                },
+                {
+                    name: 'Tarco',
+                    surname: 'Ooera',
+                    age: 30
+                },
+
+                {
+                    name: 'Cora',
+                    surname: 'Lera',
+                    age: 40
+                },
+                {
+                    name: 'Lore',
+                    surname: 'Kan',
+                    age: 25
+                },
+                {
+                    name: 'Kendo',
+                    surname: 'Bana',
+                    age: 50
+                },
+                {
+                    name: 'Varo',
+                    surname: 'Tucci',
+                    age: 35
+                },]
+            console.log(array_obj(persons))
+        }
+
+
+        console.log('ES2---------------------------------------------------------------------')
+        {// ESRCIZIO 2//
+            //utilizzo metodo map per ottenere nuovi array moltiplicati
+
+            function multiply_array(array_n, n) {
+                return array_n.map(x => x * n)
+            }
+
+            console.log(multiply_array([20, 20, 14, 36], 8))
+            console.log(multiply_array([90, 80, 10, 41], 5))
+            console.log(multiply_array([12, 31, 17, 96], 2))
+        }
+
+        console.log('ES3---------------------------------------------------------------------')
+        {  //Esercizio 3//
+            //creo funzione e uso ciclo  per andare a identificare i numeri uguali con .has  e dunque aggiungo quelli diversi 
+            function join_set(set_a, set_b) {
+                let newset = new Set([])
+                for (let x of set_a) {
+                    if (set_b.has(x)) {
+                        continue
+                    }
+                    else {
+                        newset.add(x)
+                    }
+                } return newset
+            }
+
+
+
+
+
+
+            let set1 = new Set([20, 50, 30, 10, 40])
+            let set2 = new Set([10, 30, 70, 80, 20])
+
+            console.log(join_set(set1, set2))
+        }
+
+        console.log('ES4---------------------------------------------------------------------')
+
+        {//ESERCIZIO4//
+            //creo funzione dove controllo con il metodo Hasownproperty degli oggetti se esiste la proprietà rate 
+            //dopodichè gli do le condizioni richieste a seconda del risultato del check.
+
+            function helloperson(obj) {
+                if (obj.hasOwnProperty('rate')) {
+                    if (obj['rate'] <= 10) {
+                        console.log('rate basso')
+                    }
+                    else if (obj['rate'] >= 11 && obj['rate'] <= 50) {
+                        console.log('rate medio')
+                    }
+                    else if (obj['rate'] >= 51 || obj['rate'] == 100) {
+                        console.log('rate alto')
+                    }
+
+
+                }
+                else {
+                    console.log('non ha rate')
+                }
+            }
+
+            let obj_person = {
+                name: 'mario',
+                age: 20,
+                rate: 50
+            }
+
+            helloperson(obj_person)
+        }
+        console.log('ES5---------------------------------------------------------------------')
+        //ESERCIZIO MEDIO 1//
+        {
+            function calc_days(date_a, date_b) {
+                if (date_b >= date_a) {
+                    let day_ms = new Date('1970-01-02').getTime()
+                    let difference = date_b.getTime() - date_a.getTime()
+                    let days = difference / day_ms
+                    return console.log(`il numero di giorni è: ${parseInt(days)}`)
+                }
+
+
+                else throw new Error('date not valid')
+
+            }
+
+
+
+
+            let date1 = new Date('2023-06-10')
+            let date2 = new Date('2023-06-20')
+            calc_days(date1, date2)
+        }
+
+        console.log('ES6---------------------------------------------------------------------')
+        {  //ESERCIZIO MEDIO// 2
+          // ho creato 2 funzioni una per andare a contare il numero di chiavi negli oggetti, la seconda dove sono andato verirficare le condizioni.
+            function obj_keys_number(obj) {
+                let counter = 0
+                for (let k in obj) {
+                    counter += 1
+                } return counter
+            }
+// ho confrontato il numero di chiavi come primo check per il true o false, poi progressivamente che le chiavi e i valori corrispondessero
+            function confront_obj(obj1, obj2) {
+                if (obj_keys_number(obj1) == obj_keys_number(obj2)) {
+                    for (let k in obj1) {
+                        if (obj2.hasOwnProperty(k)) {
+                            if (obj1[k] == obj2[k]) {
+                                continue }
+                            else {
+                                return console.log('False')
+                                break}
+                        }
+                        else {
+                            return console.log('False')
+                            break}
+                    }
+                }
+                else {
+                    return console.log('False')
+                }
+
+                return console.log('True')
+            }
+        
+
+
+
+
+        let persons1 = {
+
+            name: 'Marco',
+            surname: 'Boera',
+            age: 20
+        }
+
+        let persons2 = {
+            name: 'Marco',
+            surname: 'Boera',
+            age: 20,
+
+        }
+        confront_obj(persons1, persons2)}
+
+
+        //ESERCIZIO 3// MEDIO//
+
+console.log('ES7---------------------------------------------------------------------')
+     { function double(arr_element){
+         let double = arr_element * 2
+         return double
+     }
+
+     function add_10(arr_element){
+        let add_n = arr_element + 10
+        return add_n
+     }
+        function map_numbers(array,fn){
+          let newarray =  array.map(x => fn(x))
+          return console.log(newarray)
+        }
+let array1 =[20,41,20,11,60]         
+ map_numbers(array1, add_10)
+ map_numbers(array1, double)
+}
+
+//HARD//
+console.log('ES8---------------------------------------------------------------------')
+
+const json = `
+[
+ {"name": "aladddin", "rate": [5,6,7], "birthdate": "1990-10-10"},
+ {"name": "jasmine", "rate": [8,9,9], "birthdate": "1994-09-09"},
+ {"name": "abu", "rate": [2,2,3], "birthdate": "1993-10-20"}
+]`
+
+const character = JSON.parse(json)
+console.log(character)
+ 
+function yunger(arr_obj){
+    for(x = 0; x<arr_obj.length; x++ ){
+        for(j = 0; j<arr_obj[x].length; j++){}
+       
+               
+    }
+}
+function givecharacter(array_obj, string){
+   switch(string){
+    case 'cicla': 
+    console.log(array_obj);
+    break;
+    
+    }
+   
+   }
+
+</script>
+
+</body>
+
+</html>
